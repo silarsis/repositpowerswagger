@@ -1,0 +1,552 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Unofficial RepositPower External API",
+    "version" : "1.0.0",
+    "title" : "RepositPower External",
+    "contact" : {
+      "email" : "kevin@littlejohn.id.au"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/silarsis/repositpower/1.0.0",
+  "tags" : [ {
+    "name" : "authed",
+    "description" : "Only allowed after authentication"
+  }, {
+    "name" : "login",
+    "description" : "Unauthenticated"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/auth/login" : {
+      "get" : {
+        "tags" : [ "login" ],
+        "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
+        "description" : "Send username and password either as basic auth, or as parameters\nin the GET request, and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Username for access",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "Password for access",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "authenticated",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/auth/logout" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "de-authenticate the token (always returns success)",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "de-authenticated",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/userkeys" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "all userkeys/battery system identifiers for the current user",
+        "parameters" : [ ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/components" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "installed components and their overall status",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/battery/capacity" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "battery capacity in kWh",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/generation/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "solar generation data as negative real_power in kW",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/inverter/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "the battery inverter data as real_power in kW",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/house/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "house consumption in kW",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/battery/historical/soc" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "state of charge of a battery in kWh",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/meter/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "real power measurements in kW at the grid connection",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/cost/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "energy cost in $",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    },
+    "/deployments/{userkey}/gridcredits/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "summary" : "earned gridcredits",
+        "parameters" : [ {
+          "name" : "userkey",
+          "in" : "path",
+          "description" : "User Key from /userkeys",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "delta_t",
+          "in" : "query",
+          "description" : "downsample interval",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 150
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "end",
+          "in" : "query",
+          "description" : "End time",
+          "required" : false,
+          "type" : "integer",
+          "format" : "epoch"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "json or csv",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    },
+    "basic" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "inline_response_200_1" : {
+      "properties" : {
+        "msg" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\"msg\":\"logged out\",\"status\":\"ok\"}"
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "RP-TOKEN" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\"RP-TOKEN\":123456790}"
+    }
+  },
+  "parameters" : {
+    "userkey" : {
+      "name" : "userkey",
+      "in" : "path",
+      "description" : "User Key from /userkeys",
+      "required" : true,
+      "type" : "string"
+    },
+    "delta_t" : {
+      "name" : "delta_t",
+      "in" : "query",
+      "description" : "downsample interval",
+      "required" : false,
+      "type" : "integer",
+      "minimum" : 150
+    },
+    "start" : {
+      "name" : "start",
+      "in" : "query",
+      "description" : "Start time",
+      "required" : false,
+      "type" : "integer",
+      "format" : "epoch"
+    },
+    "end" : {
+      "name" : "end",
+      "in" : "query",
+      "description" : "End time",
+      "required" : false,
+      "type" : "integer",
+      "format" : "epoch"
+    },
+    "format" : {
+      "name" : "format",
+      "in" : "query",
+      "description" : "json or csv",
+      "required" : false,
+      "type" : "string"
+    }
+  }
+}
