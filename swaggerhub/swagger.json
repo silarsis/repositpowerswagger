@@ -26,21 +26,37 @@
     "/auth/login" : {
       "get" : {
         "tags" : [ "login" ],
+        "summary" : "return access token upon successful basic auth",
+        "description" : "Send username and password as basic auth and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "authenticated",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        },
+        "security" : [ {
+          "basic" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "login" ],
         "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
-        "description" : "Send username and password either as basic auth, or as parameters\nin the GET request, and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "username",
-          "in" : "query",
-          "description" : "Username for access",
+          "in" : "body",
+          "name" : "body",
           "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "password",
-          "in" : "query",
-          "description" : "Password for access",
-          "required" : false,
-          "type" : "string"
+          "schema" : {
+            "$ref" : "#/definitions/authParams"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -489,6 +505,28 @@
     }
   },
   "definitions" : {
+    "authParams" : {
+      "required" : [ "password", "username" ],
+      "properties" : {
+        "username" : {
+          "type" : "string",
+          "description" : "Username for access"
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password for access"
+        }
+      },
+      "description" : "Username/password for POST operation"
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "RP-TOKEN" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\"RP-TOKEN\":123456790}"
+    },
     "inline_response_200_1" : {
       "properties" : {
         "msg" : {
@@ -499,14 +537,6 @@
         }
       },
       "example" : "{\"msg\":\"logged out\",\"status\":\"ok\"}"
-    },
-    "inline_response_200" : {
-      "properties" : {
-        "RP-TOKEN" : {
-          "type" : "string"
-        }
-      },
-      "example" : "{\"RP-TOKEN\":123456790}"
     }
   },
   "parameters" : {
