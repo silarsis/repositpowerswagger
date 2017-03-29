@@ -66,6 +66,22 @@
       "description" : "json or csv"
     }
   },
+  "definitions" : {
+    "authParams" : {
+      "description" : "Username/password for POST operation",
+      "properties" : {
+        "username" : {
+          "type" : "string",
+          "description" : "Username for access"
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password for access"
+        }
+      },
+      "required" : [ "username", "password" ]
+    }
+  },
   "paths" : {
     "/auth/login" : {
       "post" : {
@@ -74,17 +90,11 @@
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "formData",
-          "name" : "username",
-          "description" : "Username for access",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "in" : "formData",
-          "name" : "password",
-          "description" : "Password for access",
-          "type" : "string",
-          "required" : false
+          "in" : "body",
+          "name" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/authParams"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -108,22 +118,12 @@
       },
       "get" : {
         "tags" : [ "login" ],
-        "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
-        "description" : "Send username and password either as basic auth, or as parameters\nin the GET request, and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "query",
-          "name" : "username",
-          "description" : "Username for access",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "in" : "query",
-          "name" : "password",
-          "description" : "Password for access",
-          "type" : "string",
-          "required" : false
+        "security" : [ {
+          "basic" : [ ]
         } ],
+        "summary" : "return access token upon successful basic auth",
+        "description" : "Send username and password as basic auth and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
             "description" : "authenticated",
