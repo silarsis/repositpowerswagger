@@ -74,13 +74,13 @@
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
+          "in" : "formData",
           "name" : "username",
           "description" : "Username for access",
           "required" : false,
           "type" : "string"
         }, {
-          "in" : "body",
+          "in" : "formData",
           "name" : "password",
           "description" : "Password for access",
           "type" : "string",
