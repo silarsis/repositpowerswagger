@@ -1,0 +1,414 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Unofficial RepositPower External API",
+    "version" : "1.0.0",
+    "title" : "RepositPower External",
+    "contact" : {
+      "email" : "kevin@littlejohn.id.au"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "authed",
+    "description" : "Only allowed after authentication"
+  }, {
+    "name" : "login",
+    "description" : "Unauthenticated"
+  } ],
+  "schemes" : [ "https" ],
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    },
+    "basic" : {
+      "type" : "basic"
+    }
+  },
+  "parameters" : {
+    "userkey" : {
+      "in" : "path",
+      "name" : "userkey",
+      "description" : "User Key from /userkeys",
+      "required" : true,
+      "type" : "string"
+    },
+    "delta_t" : {
+      "name" : "delta_t",
+      "in" : "query",
+      "type" : "integer",
+      "minimum" : 150,
+      "description" : "downsample interval"
+    },
+    "start" : {
+      "name" : "start",
+      "in" : "query",
+      "type" : "integer",
+      "format" : "epoch",
+      "description" : "Start time"
+    },
+    "end" : {
+      "name" : "end",
+      "in" : "query",
+      "type" : "integer",
+      "format" : "epoch",
+      "description" : "End time"
+    },
+    "format" : {
+      "name" : "format",
+      "in" : "query",
+      "type" : "string",
+      "description" : "json or csv"
+    }
+  },
+  "paths" : {
+    "/auth/login" : {
+      "post" : {
+        "tags" : [ "login" ],
+        "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
+        "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "username",
+          "description" : "Username for access",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "password",
+          "description" : "Password for access",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "authenticated",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "RP-TOKEN" : {
+                  "type" : "string"
+                }
+              },
+              "example" : {
+                "RP-TOKEN" : 123456790
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "login" ],
+        "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
+        "description" : "Send username and password either as basic auth, or as parameters\nin the GET request, and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "username",
+          "description" : "Username for access",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "password",
+          "description" : "Password for access",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "authenticated",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "RP-TOKEN" : {
+                  "type" : "string"
+                }
+              },
+              "example" : {
+                "RP-TOKEN" : 123456790
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/auth/logout" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "de-authenticate the token (always returns success)",
+        "responses" : {
+          "200" : {
+            "description" : "de-authenticated",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "msg" : {
+                  "type" : "string"
+                },
+                "status" : {
+                  "type" : "string"
+                }
+              },
+              "example" : {
+                "msg" : "logged out",
+                "status" : "ok"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userkeys" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "all userkeys/battery system identifiers for the current user",
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/components" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "installed components and their overall status",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/battery/capacity" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "battery capacity in kWh",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/generation/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "solar generation data as negative real_power in kW",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/inverter/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "the battery inverter data as real_power in kW",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/house/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "house consumption in kW",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/battery/historical/soc" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "state of charge of a battery in kWh",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/meter/historical/p" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "real power measurements in kW at the grid connection",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/cost/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "energy cost in $",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    },
+    "/deployments/{userkey}/gridcredits/historical" : {
+      "get" : {
+        "tags" : [ "authed" ],
+        "security" : [ {
+          "api_key" : [ ],
+          "basic" : [ ]
+        } ],
+        "summary" : "earned gridcredits",
+        "parameters" : [ {
+          "$ref" : "#/parameters/userkey"
+        }, {
+          "$ref" : "#/parameters/delta_t"
+        }, {
+          "$ref" : "#/parameters/start"
+        }, {
+          "$ref" : "#/parameters/end"
+        }, {
+          "$ref" : "#/parameters/format"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Unauthorised - incorrect or missing user/pass"
+          }
+        }
+      }
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/silarsis/repositpower/1.0.0"
+}
