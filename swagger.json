@@ -149,8 +149,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "de-authenticate the token (always returns success)",
         "responses" : {
@@ -179,8 +178,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "all userkeys/battery system identifiers for the current user",
         "responses" : {
@@ -194,8 +192,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "installed components and their overall status",
         "parameters" : [ {
@@ -212,8 +209,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "battery capacity in kWh",
         "parameters" : [ {
@@ -230,8 +226,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "solar generation data as negative real_power in kW",
         "parameters" : [ {
@@ -256,8 +251,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "the battery inverter data as real_power in kW",
         "parameters" : [ {
@@ -282,8 +276,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "house consumption in kW",
         "parameters" : [ {
@@ -308,8 +301,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "state of charge of a battery in kWh",
         "parameters" : [ {
@@ -334,8 +326,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "real power measurements in kW at the grid connection",
         "parameters" : [ {
@@ -360,8 +351,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "energy cost in $",
         "parameters" : [ {
@@ -386,8 +376,7 @@
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ],
         "summary" : "earned gridcredits",
         "parameters" : [ {
