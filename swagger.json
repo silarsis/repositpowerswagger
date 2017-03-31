@@ -175,7 +175,7 @@
         }
       }
     },
-    "/userkeys" : {
+    "/userkeys/" : {
       "get" : {
         "tags" : [ "authed" ],
         "security" : [ {
