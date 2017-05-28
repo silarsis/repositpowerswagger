@@ -85,7 +85,6 @@
   "paths" : {
     "/auth/login" : {
       "post" : {
-        "tags" : [ "login" ],
         "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
@@ -117,7 +116,6 @@
         }
       },
       "get" : {
-        "tags" : [ "login" ],
         "security" : [ {
           "basic" : [ ]
         } ],
@@ -147,7 +145,6 @@
     },
     "/auth/logout" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -176,7 +173,6 @@
     },
     "/userkeys/" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -190,7 +186,6 @@
     },
     "/deployments/{userkey}/components" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -207,7 +202,6 @@
     },
     "/deployments/{userkey}/battery/capacity" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -224,7 +218,6 @@
     },
     "/deployments/{userkey}/generation/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -249,7 +242,6 @@
     },
     "/deployments/{userkey}/inverter/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -274,7 +266,6 @@
     },
     "/deployments/{userkey}/house/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -299,7 +290,6 @@
     },
     "/deployments/{userkey}/battery/historical/soc" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -324,7 +314,6 @@
     },
     "/deployments/{userkey}/meter/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -349,7 +338,6 @@
     },
     "/deployments/{userkey}/cost/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
@@ -374,7 +362,6 @@
     },
     "/deployments/{userkey}/gridcredits/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "security" : [ {
           "api_key" : [ ]
         } ],
