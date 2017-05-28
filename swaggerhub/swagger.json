@@ -25,7 +25,6 @@
   "paths" : {
     "/auth/login" : {
       "get" : {
-        "tags" : [ "login" ],
         "summary" : "return access token upon successful basic auth",
         "description" : "Send username and password as basic auth and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
@@ -46,7 +45,6 @@
         } ]
       },
       "post" : {
-        "tags" : [ "login" ],
         "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
@@ -73,7 +71,6 @@
     },
     "/auth/logout" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "de-authenticate the token (always returns success)",
         "parameters" : [ ],
         "responses" : {
@@ -85,14 +82,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
-    "/userkeys" : {
+    "/userkeys/" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "all userkeys/battery system identifiers for the current user",
         "parameters" : [ ],
         "responses" : {
@@ -101,14 +96,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/components" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "installed components and their overall status",
         "parameters" : [ {
           "name" : "userkey",
@@ -123,14 +116,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/battery/capacity" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "battery capacity in kWh",
         "parameters" : [ {
           "name" : "userkey",
@@ -145,14 +136,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/generation/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "solar generation data as negative real_power in kW",
         "parameters" : [ {
           "name" : "userkey",
@@ -194,14 +183,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/inverter/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "the battery inverter data as real_power in kW",
         "parameters" : [ {
           "name" : "userkey",
@@ -243,14 +230,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/house/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "house consumption in kW",
         "parameters" : [ {
           "name" : "userkey",
@@ -292,14 +277,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/battery/historical/soc" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "state of charge of a battery in kWh",
         "parameters" : [ {
           "name" : "userkey",
@@ -341,14 +324,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/meter/historical/p" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "real power measurements in kW at the grid connection",
         "parameters" : [ {
           "name" : "userkey",
@@ -390,14 +371,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/cost/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "energy cost in $",
         "parameters" : [ {
           "name" : "userkey",
@@ -439,14 +418,12 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     },
     "/deployments/{userkey}/gridcredits/historical" : {
       "get" : {
-        "tags" : [ "authed" ],
         "summary" : "earned gridcredits",
         "parameters" : [ {
           "name" : "userkey",
@@ -488,8 +465,7 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ],
-          "basic" : [ ]
+          "api_key" : [ ]
         } ]
       }
     }
