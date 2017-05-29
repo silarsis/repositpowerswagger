@@ -228,8 +228,41 @@
                     },
                     "dc_coupled" : {
                       "type" : "boolean"
+                    },
+                    "frequency_trigger" : {
+                      "type" : "boolean"
+                    },
+                    "inverter" : {
+                      "type" : "boolean"
+                    },
+                    "load_meter" : {
+                      "type" : "boolean"
+                    },
+                    "load_phases" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "solar_meter" : {
+                      "type" : "boolean"
+                    },
+                    "solar_phases" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "solar_streams_ac" : {
+                      "type" : "object"
+                    },
+                    "solar_streams_dc" : {
+                      "type" : "object"
                     }
                   }
+                },
+                "status" : {
+                  "type" : "string"
                 }
               }
             }
