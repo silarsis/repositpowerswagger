@@ -505,7 +505,9 @@
       "properties" : {
         "userKeys" : {
           "type" : "array",
-          "format" : "string"
+          "items" : {
+            "type" : "string"
+          }
         }
       },
       "description" : "Response for userkeys request",
