@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Unofficial RepositPower External API\nThis API is built by hand from the description at https://api.repositpower.com/docs/\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n",
+    "description" : "Unofficial RepositPower External API\nThis API is built by hand from the description at https://api.repositpower.com/docs/\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs.\n\nThis API is also not completed yet.\n",
     "version" : "1.0.0",
     "title" : "RepositPower External",
     "contact" : {
