@@ -12,6 +12,8 @@
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
+  "host" : "api.repositpower.com",
+  "basePath" : "/v2",
   "tags" : [ {
     "name" : "authed",
     "description" : "Only allowed after authentication"
@@ -384,7 +386,5 @@
         }
       }
     }
-  },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/silarsis/repositpower/1.0.0"
+  }
 }
