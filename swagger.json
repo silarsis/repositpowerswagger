@@ -180,6 +180,19 @@
         } ],
         "summary" : "all userkeys/battery system identifiers for the current user",
         "responses" : {
+          "200" : {
+            "description" : "List of deployment keys",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "userKeys" : {
+                  "type" : "array",
+                  "collectionFormat" : "string",
+                  "example" : [ "UDFG23G5" ]
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
