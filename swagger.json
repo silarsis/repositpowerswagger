@@ -85,7 +85,7 @@
   "paths" : {
     "/auth/login" : {
       "post" : {
-        "summary" : "return access token upon successful basic or html auth (use username/password, or use basic auth)",
+        "summary" : "return access token (session id) upon successful basic or html auth\n(use username/password, or use basic auth)\n",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
