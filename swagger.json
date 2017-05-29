@@ -233,6 +233,7 @@
         } ],
         "responses" : {
           "200" : {
+            "description" : "battery capacity in kWh",
             "type" : "object",
             "properties" : {
               "batteryCapacity" : {
