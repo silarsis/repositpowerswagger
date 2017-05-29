@@ -186,7 +186,8 @@
               "type" : "object",
               "properties" : {
                 "userKeys" : {
-                  "type" : "array"
+                  "type" : "array",
+                  "collectionFormat" : "string"
                 }
               }
             }
