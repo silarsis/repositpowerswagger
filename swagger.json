@@ -234,14 +234,15 @@
         "responses" : {
           "200" : {
             "description" : "battery capacity in kWh",
-            "type" : "object",
-            "properties" : {
-              "batteryCapacity" : {
-                "type" : "number"
+            "schema" : {
+              "properties" : {
+                "batteryCapacity" : {
+                  "type" : "number"
+                }
+              },
+              "example" : {
+                "batteryCapacity" : 9.8
               }
-            },
-            "example" : {
-              "batteryCapacity" : 9.8
             }
           },
           "401" : {
