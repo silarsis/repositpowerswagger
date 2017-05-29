@@ -504,7 +504,8 @@
     "userkeysResponse" : {
       "properties" : {
         "userKeys" : {
-          "type" : "array"
+          "type" : "array",
+          "format" : "string"
         }
       },
       "description" : "Response for userkeys request",
