@@ -232,6 +232,17 @@
           "$ref" : "#/parameters/userkey"
         } ],
         "responses" : {
+          "200" : {
+            "type" : "object",
+            "properties" : {
+              "batteryCapacity" : {
+                "type" : "number"
+              }
+            },
+            "example" : {
+              "batteryCapacity" : 9.8
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
