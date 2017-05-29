@@ -91,6 +91,12 @@
         "summary" : "all userkeys/battery system identifiers for the current user",
         "parameters" : [ ],
         "responses" : {
+          "200" : {
+            "description" : "List of deployment keys",
+            "schema" : {
+              "$ref" : "#/definitions/userkeysResponse"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -494,6 +500,17 @@
         }
       },
       "description" : "Username/password for POST operation"
+    },
+    "userkeysResponse" : {
+      "properties" : {
+        "userKeys" : {
+          "type" : "array"
+        }
+      },
+      "description" : "Response for userkeys request",
+      "example" : {
+        "userKeys" : [ "UDFG23G5" ]
+      }
     },
     "inline_response_200" : {
       "properties" : {
