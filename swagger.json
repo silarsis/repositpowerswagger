@@ -186,9 +186,7 @@
               "type" : "object",
               "properties" : {
                 "userKeys" : {
-                  "type" : "array",
-                  "collectionFormat" : "string",
-                  "example" : [ "UDFG23G5" ]
+                  "type" : "array"
                 }
               }
             }
