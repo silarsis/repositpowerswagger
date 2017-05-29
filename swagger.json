@@ -87,7 +87,8 @@
       "description" : "Response for userkeys request",
       "properties" : {
         "userKeys" : {
-          "type" : "array"
+          "type" : "array",
+          "format" : "string"
         }
       },
       "example" : {
