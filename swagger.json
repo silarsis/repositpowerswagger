@@ -213,6 +213,27 @@
           "$ref" : "#/parameters/userkey"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "installed components and their overall status",
+            "schema" : {
+              "properties" : {
+                "data" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ac_dc" : {
+                      "type" : "boolean"
+                    },
+                    "battery" : {
+                      "type" : "boolean"
+                    },
+                    "dc_coupled" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
