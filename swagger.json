@@ -82,20 +82,6 @@
         }
       },
       "required" : [ "username", "password" ]
-    },
-    "userkeysResponse" : {
-      "description" : "Response for userkeys request",
-      "properties" : {
-        "userKeys" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        }
-      },
-      "example" : {
-        "userKeys" : [ "UDFG23G5" ]
-      }
     }
   },
   "paths" : {
@@ -197,7 +183,18 @@
           "200" : {
             "description" : "List of deployment keys",
             "schema" : {
-              "$ref" : "#/definitions/userkeysResponse"
+              "description" : "Response for userkeys request",
+              "properties" : {
+                "userKeys" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "example" : {
+                "userKeys" : [ "UDFG23G5" ]
+              }
             }
           },
           "401" : {
