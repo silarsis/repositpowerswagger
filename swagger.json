@@ -336,7 +336,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of solar generation readings - timestamp, usage",
+            "description" : "list of solar generation readings - timestamp, kW",
             "schema" : {
               "properties" : {
                 "solarP" : {
@@ -370,7 +370,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of inverter readings - timestamp, usage",
+            "description" : "list of inverter readings - timestamp, kW",
             "schema" : {
               "properties" : {
                 "inverterP" : {
@@ -404,7 +404,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "installed components, plus house measurements - timestamp, usage",
+            "description" : "installed components, plus house measurements - timestamp, kW",
             "schema" : {
               "properties" : {
                 "data" : {
@@ -441,7 +441,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "capacity and list of state of charge records - timestamp, charge",
+            "description" : "capacity and list of state of charge records - timestamp, kWh",
             "schema" : {
               "properties" : {
                 "batteryCapacity" : {
@@ -478,7 +478,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of meter usage readings - timestamp, usage",
+            "description" : "list of meter usage readings - timestamp, kW",
             "schema" : {
               "properties" : {
                 "meterP" : {
@@ -512,7 +512,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of retail costings for usage - timestamp, usage",
+            "description" : "list of retail costings for usage - timestamp, cost in $",
             "schema" : {
               "properties" : {
                 "retailCost" : {
@@ -546,7 +546,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of grid credits earnt - timestamp, usage",
+            "description" : "list of grid credits earnt - timestamp, gridcredits",
             "schema" : {
               "properties" : {
                 "gridcredits" : {
