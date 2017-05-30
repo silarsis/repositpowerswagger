@@ -88,10 +88,10 @@
       "type" : "array",
       "items" : {
         "type" : "array",
+        "minItems" : 2,
+        "maxItems" : 2,
         "items" : {
-          "type" : "number",
-          "minLength" : 2,
-          "maxLength" : 2
+          "type" : "number"
         }
       }
     }
