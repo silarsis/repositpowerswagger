@@ -94,6 +94,50 @@
           "type" : "number"
         }
       }
+    },
+    "houseData" : {
+      "description" : "Data about a house/deployment",
+      "properties" : {
+        "ac_dc" : {
+          "type" : "boolean"
+        },
+        "battery" : {
+          "type" : "boolean"
+        },
+        "dc_coupled" : {
+          "type" : "boolean"
+        },
+        "frequency_trigger" : {
+          "type" : "boolean"
+        },
+        "inverter" : {
+          "type" : "boolean"
+        },
+        "load_meter" : {
+          "type" : "boolean"
+        },
+        "load_phases" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "solar_meter" : {
+          "type" : "boolean"
+        },
+        "solar_phases" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "solar_streams_ac" : {
+          "type" : "object"
+        },
+        "solar_streams_dc" : {
+          "type" : "object"
+        }
+      }
     }
   },
   "paths" : {
@@ -230,48 +274,7 @@
             "schema" : {
               "properties" : {
                 "data" : {
-                  "type" : "object",
-                  "properties" : {
-                    "ac_dc" : {
-                      "type" : "boolean"
-                    },
-                    "battery" : {
-                      "type" : "boolean"
-                    },
-                    "dc_coupled" : {
-                      "type" : "boolean"
-                    },
-                    "frequency_trigger" : {
-                      "type" : "boolean"
-                    },
-                    "inverter" : {
-                      "type" : "boolean"
-                    },
-                    "load_meter" : {
-                      "type" : "boolean"
-                    },
-                    "load_phases" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string"
-                      }
-                    },
-                    "solar_meter" : {
-                      "type" : "boolean"
-                    },
-                    "solar_phases" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string"
-                      }
-                    },
-                    "solar_streams_ac" : {
-                      "type" : "object"
-                    },
-                    "solar_streams_dc" : {
-                      "type" : "object"
-                    }
-                  }
+                  "$ref" : "#/definitions/houseData"
                 },
                 "status" : {
                   "type" : "string"
@@ -405,48 +408,7 @@
             "schema" : {
               "properties" : {
                 "data" : {
-                  "type" : "object",
-                  "properties" : {
-                    "ac_dc" : {
-                      "type" : "boolean"
-                    },
-                    "battery" : {
-                      "type" : "boolean"
-                    },
-                    "dc_coupled" : {
-                      "type" : "boolean"
-                    },
-                    "frequency_trigger" : {
-                      "type" : "boolean"
-                    },
-                    "inverter" : {
-                      "type" : "boolean"
-                    },
-                    "load_meter" : {
-                      "type" : "boolean"
-                    },
-                    "load_phases" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string"
-                      }
-                    },
-                    "solar_meter" : {
-                      "type" : "boolean"
-                    },
-                    "solar_phases" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string"
-                      }
-                    },
-                    "solar_streams_ac" : {
-                      "type" : "object"
-                    },
-                    "solar_streams_dc" : {
-                      "type" : "object"
-                    }
-                  }
+                  "$ref" : "#/definitions/houseData"
                 },
                 "houseP" : {
                   "$ref" : "#/definitions/timestampMeter"
