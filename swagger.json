@@ -436,6 +436,7 @@
         } ],
         "responses" : {
           "200" : {
+            "description" : "list of meter usage readings - timestamp, usage",
             "schema" : {
               "properties" : {
                 "meterP" : {
