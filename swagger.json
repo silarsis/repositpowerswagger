@@ -82,6 +82,16 @@
         }
       },
       "required" : [ "username", "password" ]
+    },
+    "timestampMeter" : {
+      "description" : "Commonly used structure holding an array of arrays of [timestamp, meter_value]",
+      "type" : "array",
+      "items" : {
+        "type" : "array",
+        "items" : {
+          "type" : "number"
+        }
+      }
     }
   },
   "paths" : {
@@ -365,11 +375,14 @@
             "schema" : {
               "properties" : {
                 "inverterP" : {
+                  "$ref" : "#/definitions/timestampMeter",
                   "type" : "array",
                   "items" : {
                     "type" : "array",
                     "items" : {
-                      "type" : "number"
+                      "type" : "number",
+                      "minItems" : 2,
+                      "maxItems" : 2
                     }
                   }
                 }
