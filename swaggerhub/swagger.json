@@ -337,6 +337,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "capacity and list of state of charge records - timestamp, charge",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_5"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -606,6 +612,22 @@
         }
       },
       "example" : "{\"batteryCapacity\":9.8}"
+    },
+    "inline_response_200_5" : {
+      "properties" : {
+        "batteryCapacity" : {
+          "type" : "number"
+        },
+        "batterySOC" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
     }
   },
   "parameters" : {
