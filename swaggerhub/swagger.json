@@ -196,6 +196,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of solar generation readings - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_5"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -243,6 +249,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of inverter readings - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_6"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -290,6 +302,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "installed components, plus house measurements - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_7"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -340,7 +358,7 @@
           "200" : {
             "description" : "capacity and list of state of charge records - timestamp, charge",
             "schema" : {
-              "$ref" : "#/definitions/inline_response_200_5"
+              "$ref" : "#/definitions/inline_response_200_8"
             }
           },
           "401" : {
@@ -393,7 +411,7 @@
           "200" : {
             "description" : "list of meter usage readings - timestamp, usage",
             "schema" : {
-              "$ref" : "#/definitions/inline_response_200_6"
+              "$ref" : "#/definitions/inline_response_200_9"
             }
           },
           "401" : {
@@ -443,6 +461,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of retail costings for usage - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_10"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -490,6 +514,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of grid credits earnt - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_11"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -621,6 +651,48 @@
     },
     "inline_response_200_5" : {
       "properties" : {
+        "solarP" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_6" : {
+      "properties" : {
+        "inverterP" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_7" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/inline_response_200_3_data"
+        },
+        "houseP" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_8" : {
+      "properties" : {
         "batteryCapacity" : {
           "type" : "number"
         },
@@ -635,9 +707,35 @@
         }
       }
     },
-    "inline_response_200_6" : {
+    "inline_response_200_9" : {
       "properties" : {
         "meterP" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_10" : {
+      "properties" : {
+        "retailCost" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_11" : {
+      "properties" : {
+        "gridcredits" : {
           "type" : "array",
           "items" : {
             "type" : "array",
