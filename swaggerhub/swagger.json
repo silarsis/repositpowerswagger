@@ -567,38 +567,7 @@
         "minItems" : 2
       }
     },
-    "inline_response_200" : {
-      "properties" : {
-        "RP-TOKEN" : {
-          "type" : "string"
-        }
-      },
-      "example" : "{\"RP-TOKEN\":123456790}"
-    },
-    "inline_response_200_1" : {
-      "properties" : {
-        "msg" : {
-          "type" : "string"
-        },
-        "status" : {
-          "type" : "string"
-        }
-      },
-      "example" : "{\"msg\":\"logged out\",\"status\":\"ok\"}"
-    },
-    "inline_response_200_2" : {
-      "properties" : {
-        "userKeys" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        }
-      },
-      "description" : "Response for userkeys request",
-      "example" : "{\"userKeys\":[\"UDFG23G5\"]}"
-    },
-    "inline_response_200_3_data" : {
+    "houseData" : {
       "properties" : {
         "ac_dc" : {
           "type" : "boolean"
@@ -641,12 +610,44 @@
           "type" : "object",
           "properties" : { }
         }
-      }
+      },
+      "description" : "Data about a house/deployment"
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "RP-TOKEN" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\"RP-TOKEN\":123456790}"
+    },
+    "inline_response_200_1" : {
+      "properties" : {
+        "msg" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\"msg\":\"logged out\",\"status\":\"ok\"}"
+    },
+    "inline_response_200_2" : {
+      "properties" : {
+        "userKeys" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Response for userkeys request",
+      "example" : "{\"userKeys\":[\"UDFG23G5\"]}"
     },
     "inline_response_200_3" : {
       "properties" : {
         "data" : {
-          "$ref" : "#/definitions/inline_response_200_3_data"
+          "$ref" : "#/definitions/houseData"
         },
         "status" : {
           "type" : "string"
@@ -678,7 +679,7 @@
     "inline_response_200_7" : {
       "properties" : {
         "data" : {
-          "$ref" : "#/definitions/inline_response_200_3_data"
+          "$ref" : "#/definitions/houseData"
         },
         "houseP" : {
           "$ref" : "#/definitions/timestampMeter"
