@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Unofficial RepositPower External API\nThis API is built by hand from the description at https://api.repositpower.com/docs/\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I've note tested a bunch of 200 responses, and some\nthat I have don't have accurate enums in them because I don't know all the possible values.\n\nAlso, I haven't quite figured out how to wrap the whole thing in unit tests.\n",
+    "description" : "Unofficial RepositPower External API\n\nThis API is built by hand from the description at https://api.repositpower.com/docs/\n\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I've note tested a bunch of 200 responses, and some\nthat I have don't have accurate enums in them because I don't know all the possible values.\n\nAlso, I haven't quite figured out how to wrap the whole thing in unit tests.\n",
     "version" : "1.0.0",
     "title" : "RepositPower External",
     "contact" : {
@@ -191,13 +191,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of solar generation readings - timestamp, usage",
+            "description" : "list of solar generation readings - timestamp, kW",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_5"
             }
@@ -244,13 +244,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of inverter readings - timestamp, usage",
+            "description" : "list of inverter readings - timestamp, kW",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_6"
             }
@@ -297,13 +297,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "installed components, plus house measurements - timestamp, usage",
+            "description" : "installed components, plus house measurements - timestamp, kW",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_7"
             }
@@ -350,13 +350,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "capacity and list of state of charge records - timestamp, charge",
+            "description" : "capacity and list of state of charge records - timestamp, kWh",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_8"
             }
@@ -403,13 +403,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of meter usage readings - timestamp, usage",
+            "description" : "list of meter usage readings - timestamp, kW",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_9"
             }
@@ -456,13 +456,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of retail costings for usage - timestamp, usage",
+            "description" : "list of retail costings for usage - timestamp, cost in $",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_10"
             }
@@ -509,13 +509,13 @@
         }, {
           "name" : "format",
           "in" : "query",
-          "description" : "json or csv",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "json", "csv" ]
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of grid credits earnt - timestamp, usage",
+            "description" : "list of grid credits earnt - timestamp, gridcredits",
             "schema" : {
               "$ref" : "#/definitions/inline_response_200_11"
             }
@@ -753,9 +753,9 @@
     "format" : {
       "name" : "format",
       "in" : "query",
-      "description" : "json or csv",
       "required" : false,
-      "type" : "string"
+      "type" : "string",
+      "enum" : [ "json", "csv" ]
     }
   }
 }
