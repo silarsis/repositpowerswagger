@@ -435,6 +435,21 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "schema" : {
+              "properties" : {
+                "meterP" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
