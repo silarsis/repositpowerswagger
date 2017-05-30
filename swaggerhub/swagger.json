@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Unofficial RepositPower External API\nThis API is built by hand from the description at https://api.repositpower.com/docs/\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I'm missing a bunch of 200 responses for the\ncalls I haven't tested yet, and some that I have don't have accurate enums in them\nbecause I don't know all the possible values.\n",
+    "description" : "Unofficial RepositPower External API\nThis API is built by hand from the description at https://api.repositpower.com/docs/\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I've note tested a bunch of 200 responses, and some\nthat I have don't have accurate enums in them because I don't know all the possible values.\n",
     "version" : "1.0.0",
     "title" : "RepositPower External",
     "contact" : {
@@ -555,6 +555,16 @@
       },
       "description" : "Username/password for POST operation"
     },
+    "timestampMeter" : {
+      "type" : "array",
+      "description" : "Commonly used structure holding an array of arrays of [timestamp, meter_value]",
+      "items" : {
+        "type" : "array",
+        "items" : {
+          "type" : "number"
+        }
+      }
+    },
     "inline_response_200" : {
       "properties" : {
         "RP-TOKEN" : {
@@ -652,26 +662,14 @@
     "inline_response_200_5" : {
       "properties" : {
         "solarP" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
     "inline_response_200_6" : {
       "properties" : {
         "inverterP" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
@@ -681,13 +679,7 @@
           "$ref" : "#/definitions/inline_response_200_3_data"
         },
         "houseP" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
@@ -697,52 +689,28 @@
           "type" : "number"
         },
         "batterySOC" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
     "inline_response_200_9" : {
       "properties" : {
         "meterP" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
     "inline_response_200_10" : {
       "properties" : {
         "retailCost" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     },
     "inline_response_200_11" : {
       "properties" : {
         "gridcredits" : {
-          "type" : "array",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "number"
-            }
-          }
+          "$ref" : "#/definitions/timestampMeter"
         }
       }
     }
