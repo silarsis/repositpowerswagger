@@ -337,13 +337,7 @@
             "schema" : {
               "properties" : {
                 "solarP" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
