@@ -611,7 +611,7 @@
             "description" : "list of grid credits earnt - timestamp, usage",
             "schema" : {
               "properties" : {
-                "retailCost" : {
+                "gridcredits" : {
                   "type" : "array",
                   "items" : {
                     "type" : "array",
