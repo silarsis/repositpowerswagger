@@ -562,7 +562,9 @@
         "type" : "array",
         "items" : {
           "type" : "number"
-        }
+        },
+        "maxItems" : 2,
+        "minItems" : 2
       }
     },
     "inline_response_200" : {
