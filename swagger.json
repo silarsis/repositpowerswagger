@@ -392,6 +392,25 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "capacity and list of state of charge records - timestamp, charge",
+            "schema" : {
+              "properties" : {
+                "batteryCapacity" : {
+                  "type" : "number"
+                },
+                "batterySOC" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
