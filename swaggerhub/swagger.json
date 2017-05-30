@@ -390,6 +390,12 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of meter usage readings - timestamp, usage",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_6"
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -619,6 +625,19 @@
           "type" : "number"
         },
         "batterySOC" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "inline_response_200_6" : {
+      "properties" : {
+        "meterP" : {
           "type" : "array",
           "items" : {
             "type" : "array",
