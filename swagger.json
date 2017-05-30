@@ -89,7 +89,9 @@
       "items" : {
         "type" : "array",
         "items" : {
-          "type" : "number"
+          "type" : "number",
+          "minItems" : 2,
+          "maxItems" : 2
         }
       }
     }
@@ -375,16 +377,7 @@
             "schema" : {
               "properties" : {
                 "inverterP" : {
-                  "$ref" : "#/definitions/timestampMeter",
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number",
-                      "minItems" : 2,
-                      "maxItems" : 2
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
