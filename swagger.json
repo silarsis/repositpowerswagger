@@ -320,6 +320,22 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of solar generation readings - timestamp, usage",
+            "schema" : {
+              "properties" : {
+                "solarP" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -344,6 +360,22 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of inverter readings - timestamp, usage",
+            "schema" : {
+              "properties" : {
+                "inverterP" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -368,6 +400,66 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "installed components, plus house measurements - timestamp, usage",
+            "schema" : {
+              "properties" : {
+                "data" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ac_dc" : {
+                      "type" : "boolean"
+                    },
+                    "battery" : {
+                      "type" : "boolean"
+                    },
+                    "dc_coupled" : {
+                      "type" : "boolean"
+                    },
+                    "frequency_trigger" : {
+                      "type" : "boolean"
+                    },
+                    "inverter" : {
+                      "type" : "boolean"
+                    },
+                    "load_meter" : {
+                      "type" : "boolean"
+                    },
+                    "load_phases" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "solar_meter" : {
+                      "type" : "boolean"
+                    },
+                    "solar_phases" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "solar_streams_ac" : {
+                      "type" : "object"
+                    },
+                    "solar_streams_dc" : {
+                      "type" : "object"
+                    }
+                  }
+                },
+                "houseP" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -475,6 +567,22 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of retail costings for usage - timestamp, usage",
+            "schema" : {
+              "properties" : {
+                "retailCost" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
@@ -499,6 +607,22 @@
           "$ref" : "#/parameters/format"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "list of grid credits earnt - timestamp, usage",
+            "schema" : {
+              "properties" : {
+                "retailCost" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
