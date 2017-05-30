@@ -449,13 +449,7 @@
                   }
                 },
                 "houseP" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
@@ -492,13 +486,7 @@
                   "type" : "number"
                 },
                 "batterySOC" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
@@ -532,13 +520,7 @@
             "schema" : {
               "properties" : {
                 "meterP" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
@@ -572,13 +554,7 @@
             "schema" : {
               "properties" : {
                 "retailCost" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
@@ -612,13 +588,7 @@
             "schema" : {
               "properties" : {
                 "gridcredits" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "number"
-                    }
-                  }
+                  "$ref" : "#/definitions/timestampMeter"
                 }
               }
             }
