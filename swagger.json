@@ -75,20 +75,6 @@
     }
   },
   "definitions" : {
-    "authParams" : {
-      "description" : "Username/password for POST operation",
-      "properties" : {
-        "username" : {
-          "type" : "string",
-          "description" : "Username for access"
-        },
-        "password" : {
-          "type" : "string",
-          "description" : "Password for access"
-        }
-      },
-      "required" : [ "username", "password" ]
-    },
     "timestampMeter" : {
       "description" : "Commonly used structure holding an array of arrays of [timestamp, meter_value]",
       "type" : "array",
@@ -147,19 +133,16 @@
     }
   },
   "paths" : {
-    "/auth/login" : {
+    "/auth/login/" : {
       "post" : {
+        "security" : [ {
+          "basic" : [ ]
+        } ],
         "summary" : "return access token (session id) upon successful basic or html auth\n(use username/password, or use basic auth)\n",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "$ref" : "#/parameters/JWTRequestHeader"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "schema" : {
-            "$ref" : "#/definitions/authParams"
-          }
         } ],
         "responses" : {
           "200" : {
@@ -171,7 +154,7 @@
                   "type" : "string"
                 },
                 "expires_at" : {
-                  "type" : "string"
+                  "type" : "number"
                 }
               },
               "example" : {
