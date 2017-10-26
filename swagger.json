@@ -68,10 +68,9 @@
       "enum" : [ "json", "csv" ]
     },
     "JWTRequestHeader" : {
-      "name" : "Repsit-Auth",
+      "name" : "Reposit-Auth",
       "in" : "header",
       "type" : "string",
-      "required" : true,
       "default" : "API"
     }
   },
