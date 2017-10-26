@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Unofficial RepositPower External API\n\nThis API is built by hand from the description at https://api.repositpower.com/docs/\n\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I've note tested a bunch of 200 responses, and some\nthat I have don't have accurate enums in them because I don't know all the possible values.\n\nAlso, I haven't quite figured out how to wrap the whole thing in unit tests.\n",
+    "description" : "Unofficial RepositPower External API\n\nThis API is built by hand from the description at https://api.repositpower.com/docs/\n\nIt should not be mistaken for official in any way shape or form, it's simply my\nattempt to document the API and build some client libraries from that.\n\nThis API is demonstrably wrong around authentication - please read the official docco\nat the link above for accurate details. It will login, but all the login options are not\ncaptured - I wasn't clear how to write up both basic and token login being available\non all URLs (ie. how to make auth an either/or rather than a both).\n\nThis API is also not completed yet. I've not tested a bunch of 200 responses, and some\nthat I have don't have accurate enums in them because I don't know all the possible values.\n\nAlso, I haven't quite figured out how to wrap the whole thing in unit tests.\n\nPublishes a swagger file to https://github.com/silarsis/repositpowerswagger\nand a python client library to https://github.com/silarsis/rp-python-client\n\nThis version (1.0.0) matches version 11/03/2016 of the official docs (as at 30/5/2017)\n",
     "version" : "1.0.0",
     "title" : "RepositPower External",
     "contact" : {
@@ -24,31 +24,17 @@
   "schemes" : [ "https" ],
   "paths" : {
     "/auth/login" : {
-      "get" : {
-        "summary" : "return access token upon successful basic auth",
-        "description" : "Send username and password as basic auth and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "authenticated",
-            "schema" : {
-              "$ref" : "#/definitions/inline_response_200"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorised - incorrect or missing user/pass"
-          }
-        },
-        "security" : [ {
-          "basic" : [ ]
-        } ]
-      },
       "post" : {
         "summary" : "return access token (session id) upon successful basic or html auth\n(use username/password, or use basic auth)\n",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "name" : "Repsit-Auth",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "default" : "API"
+        }, {
           "in" : "body",
           "name" : "body",
           "required" : false,
@@ -615,11 +601,14 @@
     },
     "inline_response_200" : {
       "properties" : {
-        "RP-TOKEN" : {
+        "access_token" : {
+          "type" : "string"
+        },
+        "expires_at" : {
           "type" : "string"
         }
       },
-      "example" : "{\"RP-TOKEN\":123456790}"
+      "example" : "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JlcG9zaXQuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfFIzcDBzMVRQMHczUiIsImF1ZCI6Imh0dHBzOi8vYXBpLnJlcG9zaXRwb3dlci5jb20vIiwiYXpwIjoiM0NGNTM0cVBkZ2dxdUxsb0dwN3ViUGVGZVEyWVBBNU8iLCJleHAiOjE0OTk4MzYyMDUsImlhdCI6MTQ5OTgzMTQyOCwic2NvcGUiOiJyZXBvc2l0IG9mZmxpbmVfYWNjZXNzIiwiZ3R5IjoicGFzc3dvcmQiLCJqdGkiOiI2NDdlYWFjMC1lNzM2LTRmYzgtYjA0OS02NjEwZmYzZmNmZTUifQ.Y7kVpcFhhlM8_jEqSbkzfKmI6IfSVh0LhXoQKzBwkq0\",\"expires_at\":1499832028}"
     },
     "inline_response_200_1" : {
       "properties" : {
@@ -756,6 +745,13 @@
       "required" : false,
       "type" : "string",
       "enum" : [ "json", "csv" ]
+    },
+    "JWTRequestHeader" : {
+      "name" : "Repsit-Auth",
+      "in" : "header",
+      "required" : true,
+      "type" : "string",
+      "default" : "API"
     }
   }
 }
