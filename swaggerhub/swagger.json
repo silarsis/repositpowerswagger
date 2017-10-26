@@ -23,7 +23,7 @@
   } ],
   "schemes" : [ "https" ],
   "paths" : {
-    "/auth/login" : {
+    "/auth/login/" : {
       "post" : {
         "summary" : "return access token (session id) upon successful basic or html auth\n(use username/password, or use basic auth)\n",
         "description" : "Post username and password and you will get back an RP-TOKEN value.\nAdd that value to the Headers of all subsequent calls (see api_key security definition above)\nas your authenticated token.\n",
@@ -34,13 +34,6 @@
           "required" : false,
           "type" : "string",
           "default" : "API"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/authParams"
-          }
         } ],
         "responses" : {
           "200" : {
@@ -52,7 +45,10 @@
           "401" : {
             "description" : "Unauthorised - incorrect or missing user/pass"
           }
-        }
+        },
+        "security" : [ {
+          "basic" : [ ]
+        } ]
       }
     },
     "/auth/logout" : {
@@ -527,20 +523,6 @@
     }
   },
   "definitions" : {
-    "authParams" : {
-      "required" : [ "password", "username" ],
-      "properties" : {
-        "username" : {
-          "type" : "string",
-          "description" : "Username for access"
-        },
-        "password" : {
-          "type" : "string",
-          "description" : "Password for access"
-        }
-      },
-      "description" : "Username/password for POST operation"
-    },
     "timestampMeter" : {
       "type" : "array",
       "description" : "Commonly used structure holding an array of arrays of [timestamp, meter_value]",
@@ -605,7 +587,7 @@
           "type" : "string"
         },
         "expires_at" : {
-          "type" : "string"
+          "type" : "number"
         }
       },
       "example" : "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JlcG9zaXQuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfFIzcDBzMVRQMHczUiIsImF1ZCI6Imh0dHBzOi8vYXBpLnJlcG9zaXRwb3dlci5jb20vIiwiYXpwIjoiM0NGNTM0cVBkZ2dxdUxsb0dwN3ViUGVGZVEyWVBBNU8iLCJleHAiOjE0OTk4MzYyMDUsImlhdCI6MTQ5OTgzMTQyOCwic2NvcGUiOiJyZXBvc2l0IG9mZmxpbmVfYWNjZXNzIiwiZ3R5IjoicGFzc3dvcmQiLCJqdGkiOiI2NDdlYWFjMC1lNzM2LTRmYzgtYjA0OS02NjEwZmYzZmNmZTUifQ.Y7kVpcFhhlM8_jEqSbkzfKmI6IfSVh0LhXoQKzBwkq0\",\"expires_at\":1499832028}"
